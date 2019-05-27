@@ -13,8 +13,12 @@ class Product < ApplicationRecord
 # _form.html.erbの読み込みと送信時で呼び出される
 # モデル.find_by_カラム名(検索する値)
 # カラム名を指定して最初の1件を取得(find_by_colum)
+# self.category = Category.find_by_name(name) if name.present?
+
+# モデル.find_or_create_by(条件)
+# 検索条件を指定して初めの1件を取得し、1件もなければ作成する
   def category_name=(name)
-    self.category = Category.find_by_name(name) if name.present?
+    self.category = Category.find_or_create_by(name: name) if name.present?
   end
 end
 
